@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Test</h1>
+    <input />
+    <div id="stats"></div>
+    <p id="bottom" style="margin: 0px; position: fixed;">Bottom</p>
+</body>
+<script>
+var statsTag = document.querySelector("div#stats");
+var bottomTag = document.querySelector("p#bottom");
+
+var bottomTagSizeInPixels = 32;
+bottomTag.style.fontSize = `${bottomTagSizeInPixels}px`;
+
+function updateStats () {
+    statsTag.innerHTML = `<p>VisualViewport Height: ${visualViewport.height}</p>`;
+}
+
+function moveBottomTextToBottom () {
+    bottomTag.style.top = visualViewport.height - bottomTagSizeInPixels;
+}
+
+function updateAll () {
+    try {
+        updateStats();
+        moveBottomTextToBottom();
+    } catch (e) {
+        divTag.innerHTML = e.message;
+    }
+}
+
+visualViewport.addEventListener("resize", updateAll);
+
+updateAll();
+</script>
+</html>
